@@ -1,0 +1,247 @@
+first way inject react in project
+using CDN we can add the React inside the HTML in script tag
+
+what is CDN:
+
+CDN stands for Content Delivery Network, which is a system of servers that deliver web content to users based on their geographic location.
+
+Import React with CDN:-
+To use React with CDN, you need to add two script tags to your HTML file: one for React and one for ReactDOM. React is the core library that provides the functionality for creating components and elements. ReactDOM is the library that provides the functionality for rendering React elements to the DOM. You can use the following script tags to load the latest versions of React and ReactDOM from unpkg, which is a CDN service that hosts npm packages:
+
+ <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    App.js
+
+    const heading = React.createElement('h1',{id:'heading'})
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(heading)
+
+Why the crossorigin Attribute?:-
+If you serve React from a CDN, we recommend to keep the crossorigin attribute set:
+
+what is differance between library and framework:-
+
+Both the framework vs library is precoded support programs to develop complex software applications. However, libraries target a specific functionality, while a framework tries to provide everything required to develop a complete application
+
+
+what is React.js:
+React, is an open-source JavaScript library used for building user interfaces (UIs) for web applications. It was developed by Facebook and is commonly used for creating single-page applications and mobile applications.
+
+what is npm:-
+
+npm is a package manager for the javascript programing language maintained
+ by npm, inc.
+
+what is npm:
+npm is installing package
+what is npx:-
+exicuting package
+
+what is package.js:
+
+package.js is configration for npm 
+need: package.json is also kown as dependancies
+
+dependancyies differance:-
+~version “Approximately equivalent to version”, will update you to all future patch versions, without incrementing the minor version. ~1.2.3 will use releases from 1.2.3 to <1.3.0.
+
+^version “Compatible with version”, will update you to all future minor/patch versions, without incrementing the major version. ^1.2.3 will use releases from 1.2.3 to <2.0.0.
+
+package-lock.json:-
+
+package-lock.json keep a track of all  exact version of the all dependancies. 
+
+what is bundler:-
+A bundler is a tool that takes all your JavaScript code, along with any other assets like CSS or images, and combines them into a single file (or a few files) that can be served to the browser.
+
+what is webpack:-
+Webpack is a bundler that uses a dependency graph to bundle our code and assets (incuding static assets such as images) into a ‘bundle’ which we can then deploy.
+
+
+what is parcel:-
+
+Parcel.js is a simple and fast web application bundler that can be used with React for building web applications. To create a React application using Parcel.js, follow these steps:
+
+#Parcel what do
+-Dev Build
+-Local Server
+-HMR: Hot Module Replacement
+-File Watching Algorithm - written in C++;
+-Caching - Faster Builds
+-IMAGE optimization
+-minification
+-Bundling
+-Compress
+-consistant Hashing
+-code spliting
+-Differential Bundling-support older browsers
+-Diagnostic
+-Error Handling
+-allow run on https server
+-Tree Shaking - remove unused code
+-Different dev and prod bundles
+
+
+Install Parcel.js:-
+npm install -D parcel
+npx parcel index.html:
+hosting app on server
+
+two types of dependacy we are installing in React
+ 1) dev.
+ dev dependancy is a generally required in a development face 
+ 2) normal:
+  normal dependancy are generally required in production face
+
+start the project in dev mode:-
+using script run the project in developemnt means dev build
+ex:
+"start":"parcel index.html"
+
+-
+  what is node-modules:
+  The node_modules directory is where all the dependancies packages are stored that are used to build and run your react project. 
+  node moduels are contains all the code that we fetch from npm 
+
+what is React.createElement:
+it is basically object when it render this becomes html element
+
+what is jsx:-
+
+What is JSX? JSX stands for JavaScript XML. JSX allows us to write HTML in React. JSX makes it easier to write and add HTML in React.
+
+-jsx is not part of React jsx it's differant
+and jsx not html it is differance.
+-javascript are not understand the jsx
+
+-jsx converted to react.createElement and reactElement converted to reactElement js object and this convert in HTMLElement this all are converting babels
+-if you want to write attributes in side the jsx you jave to write in camalcase
+
+Advantage of jsx:
+
+
+-single line and multiple line:
+single line:-
+const jsxHeading = <h1 className="head">React</h1>
+multiple line:-
+const jsxHeading = (<h1 className="head">React</h1>)
+
+-js engine are not understand like this code:-
+const heading=<h1>hello></h1>
+
+it will gives error 
+
+
+what is babel:-
+babel is javascript openSource compiler
+babel convert jsx to react code.
+
+
+what is component:
+
+
+
+types of components:
+1)class Based Components:-
+2)Functional Component:-
+
+functional components is a just normal javascript function. which return some  pice of jsx this is  called functional component.
+
+for example:
+
+const HeadingComponent = () =>{
+  return <h1 className="heading"> Hello world</h1>
+}
+
+
+what is normal React element:-
+in functional component can't return jsx in normal React Element.
+
+const HeadingComponent = (
+  <h1 className="heading"> Hello world</h1>
+  )
+
+
+what is functional component:-
+In functional component we return some pice of jsx.
+
+const HeadingComponent = () => (
+ <div id="container"> 
+  <h1 className="heading"> Hello world</h1>
+ </div> 
+ 
+)
+
+create foodOrdering App//
+
+//Header
+-Logo
+-Nav Item
+
+//Body
+-search
+-RestaurntContainer
+  -RestaurantCard
+
+//Footer
+
+-Copyright
+-Links
+-Address
+-Contact
+
+what is props:
+props is a property and is used for passing data from one component to another..
+
+we pass the props two types
+1) using destructuring
+2) 
+
+what is conflict revenue UI:-
+
+what is cloudanery:-
+
+what is optional chaining:-
+
+The optional chaining (?.) operator accesses an object's property or calls a function. If the object accessed or function called using this operator is undefined or null, the expression short circuits and evaluates to undefined instead of throwing an error.
+
+what is key:
+
+key is a unique key property. means that each of the list item uniqualy represented.
+when we have do loop using map need to give unique id using key.
+
+-react index as a key is a bad practis.
+
+-two types of Export and import:-
+
+Default Export/Import:-
+
+Export default component
+import component from your path
+
+Named Export/Import:-
+
+export const Component;
+import {components} from 'path'
+
+Hooks:
+
+Hooks is a new addition in React 16.8. They let you use state and other React features without writing a class. 
+
+1) usseState():
+
+useState is a React Hook that lets you add a state variable to your component which is comming from react library.
+
+const [state, setState] = useState(initialState)
+
+2) useEffect():
+useEffect is a React Hook that allow you to performa side effects in your component some example of side effects are :fetching data directly updating the dom and timers useEffect takes two arguments one is callback function and second is array dependancy.
+
+
+
+
+what is the microservice:
+
+what is conditional rendering:
+rendering on the basis of the condition.
