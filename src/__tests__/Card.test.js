@@ -6,8 +6,8 @@ import mockData from "../mockData/mockCardMenuData.json"
 import { Provider } from "react-redux";
 import appStore from "../store/appStore";
 import Header from "../components/Header"
-import Cart from "../RestorantCard/cart";
 import { BrowserRouter } from "react-router";
+import Cart from "../RestorantCard/cart";
 
 global.fetch = jest.fn(() => {
   return Promise.resolve({
