@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, removeItem } from "../store/cardSlice";
 import { Images } from "../../appConstant";
+
 const Cart = () => {
   const cartItems = useSelector((store) => store.card.item); // Ensure 'card' is the correct slice
   const dispatch = useDispatch();
