@@ -5,7 +5,6 @@ import Contact from '../pages/Contact';
 import ErrorPage from '../pages/ErrorPage';
 import Cart from '../RestorantCard/cart';
 
-
 import RestaurantMenu from '../RestorantCard/RestaurantMenu';
 
 const routesConfig = [
