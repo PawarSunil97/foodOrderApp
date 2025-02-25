@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import appStore from "../store/appStore";
 import Header from "../components/Header"
 import { BrowserRouter } from "react-router";
-import Cart from "../RestorantCard/cart";
+import Cart from "../RestorantCard/Cart";
 
 global.fetch = jest.fn(() => {
   return Promise.resolve({
