@@ -1,72 +1,83 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import RestorantCard from "../RestorantCard/RestorantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router";
+import { useBody } from "../Hooks/useBody";
+import { useOnlineStatus } from "../Hooks/useOnlineStatus";
+import userContext from "../utils/userContaxt";
+
 const Body = () => {
-  const [listOfRestaurant, setListOfRestaurant] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [filterList, setFilterList] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const { isOnline } = useOnlineStatus();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const fetchData = async () => {
-    try {
-      const data = await fetch(
-        "https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0173611&lng=72.5202951&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
-      const json = await data.json();
-      const jsonData =
-        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants;
-      setListOfRestaurant(jsonData);
-      setFilterList(jsonData);
-      setLoading(false);
-    } catch (error) {
-      console.log("errror", error);
-      setLoading(false);
-    }
-  };
-
-  const handleSearch = () => {
-    const filtered = listOfRestaurant.filter((restaurant) =>
-      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
+  const {
+    loading,
+    filterList,
+    searchText,
+    setSearchText,
+    handleSearch,
+    filterListData,
+  } = useBody();
+  const { loggedInUser, setUserName } = useContext(userContext);
+  // Offline Message
+  console.log(filterList)
+  if (!isOnline) {
+    return (
+      <h1 className="text-center text-red-600 text-xl font-bold mt-10">
+        Looks like you are offline. Please check your network connection.
+      </h1>
     );
-    setFilterList(filtered);
-  };
-
-  const filterListData = () => {
-    setFilterList(listOfRestaurant.filter((e) => e.info.avgRating > 4.3));
-    setLoading(false);
-  };
+  }
 
   return loading ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="p-4">
+      {/* Search and Filter Section */}
+      <div className="flex justify-between items-center mb-6">
+        {/* Search Box */}
+        <div className="flex items-center space-x-2">
           <input
             type="text"
-            className="search-box"
+            data-testid="search"
+            placeholder="Search Restaurants..."
+            className="border border-gray-300 rounded-lg p-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-400"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button
+            className="bg-green-400 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
         </div>
 
-        <button className="filter-btn" onClick={filterListData}>
-          filter Restorant
+        {/* Filter Button */}
+        <button
+          className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+          onClick={filterListData}
+        >
+          Filter Restaurants
         </button>
+        <input
+          className="border black"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}
+        />
       </div>
-      <div className="res-container">
+
+      {/* Restaurants List */}
+      <div data-testid="restCard" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {filterList?.length > 0 ? (
           filterList.map((restaurant, idx) => (
-            <RestorantCard key={idx} data={restaurant} />
+            <Link data-testid={"cards"} key={idx} to={"/restaurant/" + restaurant.info.id}>
+              <RestorantCard data={restaurant} />
+            </Link>
           ))
         ) : (
-          <p>No restaurants found.</p>
+          <p className="col-span-full text-center text-gray-500">
+            No restaurants found.
+          </p>
         )}
       </div>
     </div>
