@@ -3,7 +3,8 @@ import Body from '../components/Body';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import ErrorPage from '../pages/ErrorPage';
-import Cart from '../RestorantCard/cart';
+import Cart from '../RestorantCard/Cart';
+
 
 import RestaurantMenu from '../RestorantCard/RestaurantMenu';
 
